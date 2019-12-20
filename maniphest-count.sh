@@ -21,9 +21,9 @@
 
 
 if [ "$#" -lt 1 ]; then
-	echo "Illegal number of parameters"
-	echo "usage: ./manifest-query query.json [query2.json]"
-	exit
+  echo "Illegal number of parameters"
+  echo "usage: ./manifest-query query.json [query2.json]"
+  exit
 fi
 
 # Hardcoded values (XXX to parse them from command-line)
@@ -48,26 +48,26 @@ for query in "$@"; do
   after=""
   for i in $(seq 1 $(($FULL_PAGES + $PARTIAL_PAGES))); do
     LIMIT_PARTIAL=$PAGES_LEFTOVER
-	if [[ $PARTIAL_PAGES -eq 0 ]]; then LIMIT_PARTIAL=100; fi
-	if [[ i -le $FULL_PAGES ]]; then LIMIT_PARTIAL=100; fi
+  if [[ $PARTIAL_PAGES -eq 0 ]]; then LIMIT_PARTIAL=100; fi
+  if [[ i -le $FULL_PAGES ]]; then LIMIT_PARTIAL=100; fi
 
-	CURSOR=`echo ". + {\"limit\": $LIMIT_PARTIAL, \"after\": $after }"`
-	if [[ i -eq 1 ]]; then CURSOR=`echo ". + {\"limit\": $LIMIT_PARTIAL }"`; fi
+  CURSOR=`echo ". + {\"limit\": $LIMIT_PARTIAL, \"after\": $after }"`
+  if [[ i -eq 1 ]]; then CURSOR=`echo ". + {\"limit\": $LIMIT_PARTIAL }"`; fi
 
     query_with_cursor=`cat $query | jq "$CURSOR"`;
 
     result=`echo $query_with_cursor | \
-    arc call-conduit --conduit-uri $SERVER \
-    --conduit-token \
-    $CONDUIT_TOKEN \
-    maniphest.search`
+      arc call-conduit --conduit-uri $SERVER \
+      --conduit-token \
+      $CONDUIT_TOKEN \
+      maniphest.search`
 
     after=`echo $result | jq '.response.cursor.after'`
     partial_count=`echo $result | jq '.response.data | length'`
     count=`echo "$count + $partial_count" | bc`
 
-	echoerr "partial: $count"
-	if [ "$after" == "null" ] ; then break; fi
+  echoerr "partial: $count"
+  if [ "$after" == "null" ] ; then break; fi
   done
 done
 
