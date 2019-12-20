@@ -1,0 +1,13 @@
+{
+  "constraints": {
+    "projects": [
+      "bf_blender",
+      "tracker_curfew"
+    ],
+    "subtypes": [
+      "default",
+      "knownissues",
+      "bug"
+    ]
+  }
+}

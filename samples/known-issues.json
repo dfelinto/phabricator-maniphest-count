@@ -1,0 +1,13 @@
+{
+  "constraints": {
+    "statuses": [
+      "confirmed"
+    ],
+    "subtypes": [
+      "knownissues"
+    ],
+    "projects": [
+      "bf_blender"
+    ]
+  }
+}

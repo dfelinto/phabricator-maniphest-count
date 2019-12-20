@@ -1,0 +1,15 @@
+{
+  "constraints": {
+    "statuses": [
+      "needstriage",
+      "needsuserinfo",
+      "needsdevelopertoreproduce"
+    ],
+    "subtypes": [
+      "default"
+    ],
+    "projects": [
+      "bf_blender"
+    ]
+  }
+}

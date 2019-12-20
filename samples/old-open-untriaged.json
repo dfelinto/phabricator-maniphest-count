@@ -1,0 +1,19 @@
+{
+  "queryKey": "yWshT6GBjfNC",
+  "constraints": {
+    "statuses": [
+      "open"
+    ],
+    "priorities": [
+      90,
+      80,
+      30
+    ],
+    "projects": [
+      "bf_blender"
+    ],
+    "custom.blender:task-type": [
+      "Bug"
+    ]
+  }
+}
